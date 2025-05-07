@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing Maven...
+      - yum install -y maven
+  build:
+    commands:
+      - echo Building app...
+      - mvn clean package
+  post_build:
+    commands:
+      - echo Build completed.
+      - mkdir -p output
+      - cp target/*.jar output/
+artifacts:
+  files:
+    - output/*
