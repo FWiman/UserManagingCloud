@@ -3,18 +3,26 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto21
+      java: corretto21  # Ensure compatibility with your app
+    commands:
+      - echo Installing Maven...
+      - curl -sL https://github.com/apache/maven/releases/download/maven-3.8.6/apache-maven-3.8.6-bin.tar.gz | tar -xz -C /usr/local
+      - export PATH=/usr/local/apache-maven-3.8.6/bin:$PATH
   build:
     commands:
       - echo Build started on `date`
-      - mvn package -DskipTests
-      - cp target/*.jar application.jar
+      - mvn clean package -DskipTests  # Clean and build the project
+      - cp target/*.jar application.jar  # Rename the JAR file for clarity
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo Preparing for deployment
 
 artifacts:
   files:
-    - application.jar
-  discard-paths: yes
+    - application.jar  # The output artifact (JAR file)
+  discard-paths: yes  # Keeps the file in the root of the artifact directory
 
+cache:
+  paths:
+    - '/root/.m2/**/*'  # Cache Maven dependencies for faster builds
