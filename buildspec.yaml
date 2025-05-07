@@ -6,8 +6,6 @@ phases:
       java: corretto21  # Ensure compatibility with your app
     commands:
       - echo Installing Maven...
-      - curl -sL https://github.com/apache/maven/releases/download/maven-3.8.6/apache-maven-3.8.6-bin.tar.gz | tar -xz -C /usr/local
-      - export PATH=/usr/local/apache-maven-3.8.6/bin:$PATH
   build:
     commands:
       - echo Build started on `date`
