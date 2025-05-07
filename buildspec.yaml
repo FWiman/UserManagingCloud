@@ -1,26 +1,16 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
-      java: corretto21  # Ensure compatibility with your app
-    commands:
-      - echo Installing Maven...
+      java: corretto21
   build:
     commands:
-      - echo Build started on `date`
-      - mvn clean package -DskipTests  # Clean and build the project
-      - cp target/*.jar application.jar  # Rename the JAR file for clarity
+      - echo Build completed on `date`
+      - mvn package -Dmaven.test.skip=true
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo Preparing for deployment
-
 artifacts:
   files:
-    - application.jar  # The output artifact (JAR file)
-  discard-paths: yes  # Keeps the file in the root of the artifact directory
-
-cache:
-  paths:
-    - '/root/.m2/**/*'  # Cache Maven dependencies for faster builds
+    - target/*.jar
+  discard-paths: yes
