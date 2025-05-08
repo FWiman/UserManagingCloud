@@ -1,24 +1,16 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       java: corretto21
-
   build:
     commands:
-      - echo Build started on `date`
-      - mvn clean package
+      - echo Build completed on `date`
 
   post_build:
     commands:
-      - echo Packaging build artifacts...
-      - mkdir -p bundle
-      - cp target/*.jar bundle/app.jar
-      - "echo 'web: java -jar app.jar' > bundle/Procfile"
-
+      - echo Build completed on `date`
 artifacts:
   files:
-    - '**/*'
-  base-directory: bundle
+    - target/*.jar
   discard-paths: yes
