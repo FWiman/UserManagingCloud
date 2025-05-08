@@ -15,7 +15,7 @@ phases:
       - echo Packaging build artifacts...
       - mkdir -p bundle
       - cp target/*.jar bundle/app.jar
-      - echo 'web: java -jar app.jar' > bundle/Procfile
+      - "echo 'web: java -jar app.jar' > bundle/Procfile"
 
 artifacts:
   files:
