@@ -1,17 +1,21 @@
-version: 0.2
-phases:
-  install:
-    runtime-versions:
-      java: corretto21
-  build:
-    commands:
-      - echo Build completed on `date`
-      - maven clean package
-
-  post_build:
-    commands:
-      - echo Build completed on `date`
-artifacts:
-  files:
-    - target/*.jar
-  discard-paths: yes
+  version: 0.2
+  phases:
+    install:
+      runtime-version: corretto21
+      commands:
+        # Install dependencies (if necessary)
+        - echo Installing Maven dependencies
+        - mvn install -DskipTests
+    build:
+      commands:
+        # Build the project
+        - echo Building the project
+        - mvn clean package
+    post_build:
+      commands:
+        # Post-build actions (if any)
+        - echo Build completed on `date`
+  artifacts:
+    files:
+      - target/*.jar
+    discard-paths: yes
