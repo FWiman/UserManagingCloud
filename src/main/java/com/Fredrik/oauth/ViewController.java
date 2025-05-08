@@ -21,7 +21,7 @@ public class ViewController {
         model.addAttribute("provider", provider);
         model.addAttribute("name", token.getPrincipal().getAttribute("name"));
         model.addAttribute("email", token.getPrincipal().getAttribute("email"));
-        model.addAttribute("photo", token.getPrincipal().getAttribute("photo"));
+        model.addAttribute("picture", token.getPrincipal().getAttribute("picture"));
 
         return "user-profile";
     }

@@ -46,13 +46,13 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             String name = Optional.ofNullable(attributes.get("name"))
                     .map(Object::toString)
                     .orElse((String) attributes.get("login"));
-            String photo = (String) attributes.get("avatar_url");
+            String picture = (String) attributes.get("avatar_url");
 
             attributes.put("name", name);
             attributes.put("email", email);
-            attributes.put("photo", photo);
+            attributes.put("picture", picture);
         } else if ("google".equals(registrationId)) {
-            attributes.put("photo", attributes.get("picture"));
+            attributes.put("picture", attributes.get("picture"));
         }
 
         return new DefaultOAuth2User(
