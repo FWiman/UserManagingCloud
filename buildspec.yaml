@@ -5,12 +5,16 @@ phases:
       java: corretto21
   build:
     commands:
-      - echo Build completed on `date`
+      - echo Build started on `date`
       - mvn package -Dmaven.test.skip=true
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo Packaging build artifacts...
+      - mkdir -p bundle
+      - cp target/*.jar bundle/app.jar
+      - echo "web: java -jar app.jar" > bundle/Procfile
 artifacts:
   files:
-    - target/*.jar
+    - bundle/**
+  base-directory: bundle
   discard-paths: yes
