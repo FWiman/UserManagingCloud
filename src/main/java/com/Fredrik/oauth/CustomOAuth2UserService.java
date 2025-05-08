@@ -52,8 +52,15 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             attributes.put("email", email);
             attributes.put("picture", picture);
         } else if ("google".equals(registrationId)) {
-            attributes.put("picture", attributes.get("picture"));
+            String name = (String) attributes.get("name");
+            String email = (String) attributes.get("email");
+            String picture = (String) attributes.get("picture");
+
+            attributes.put("name", name);
+            attributes.put("email", email);
+            attributes.put("picture", picture);
         }
+
 
         return new DefaultOAuth2User(
                 oauth2User.getAuthorities(),
